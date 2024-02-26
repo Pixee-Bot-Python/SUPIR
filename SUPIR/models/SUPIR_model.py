@@ -3,10 +3,10 @@ from sgm.models.diffusion import DiffusionEngine
 from sgm.util import instantiate_from_config
 import copy
 from sgm.modules.distributions.distributions import DiagonalGaussianDistribution
-import random
 from SUPIR.utils.colorfix import wavelet_reconstruction, adaptive_instance_normalization
 from pytorch_lightning import seed_everything
 from torch.nn.functional import interpolate
+import secrets
 
 class SUPIRModel(DiffusionEngine):
     def __init__(self, control_stage_config, ae_dtype='fp32', diffusion_dtype='fp32', p_p='', n_p='', *args, **kwargs):
@@ -109,7 +109,7 @@ class SUPIRModel(DiffusionEngine):
         self.sampler = instantiate_from_config(self.sampler_config)
 
         if seed == -1:
-            seed = random.randint(0, 65535)
+            seed = secrets.SystemRandom().randint(0, 65535)
         seed_everything(seed)
 
         _z = self.encode_first_stage_with_denoise(x, use_sample=False)
