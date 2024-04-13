@@ -1,4 +1,4 @@
-## Scaling Up to Excellence: Practicing Model Scaling for Photo-Realistic Image Restoration In the Wild
+## (CVPR2024) Scaling Up to Excellence: Practicing Model Scaling for Photo-Realistic Image Restoration In the Wild
 
 > [[Paper](https://arxiv.org/abs/2401.13627)] &emsp; [[Project Page](http://supir.xpixel.group/)] &emsp; [Online Demo (Coming soon)] <br>
 > Fanghua, Yu, [Jinjin Gu](https://www.jasongt.com/), Zheyuan Li, Jinfan Hu, Xiangtao Kong, [Xintao Wang](https://xinntao.github.io/), [Jingwen He](https://scholar.google.com.hk/citations?user=GUxrycUAAAAJ), [Yu Qiao](https://scholar.google.com.hk/citations?user=gFtI-8QAAAAJ), [Chao Dong](https://scholar.google.com.hk/citations?user=OSDCB0UAAAAJ) <br>
@@ -39,6 +39,10 @@ For users who can connect to huggingface, please setting `LLAVA_CLIP_PATH, SDXL_
 * [SDXL base 1.0_0.9vae](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/blob/main/sd_xl_base_1.0_0.9vae.safetensors)
 * [LLaVA CLIP](https://huggingface.co/openai/clip-vit-large-patch14-336)
 * [LLaVA v1.5 13B](https://huggingface.co/liuhaotian/llava-v1.5-13b)
+* (optional) [Juggernaut-XL_v9_RunDiffusionPhoto_v2](https://huggingface.co/RunDiffusion/Juggernaut-XL-v9/blob/main/Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors)
+  * Replacement of `SDXL base 1.0_0.9vae` for Photo Realistic
+* (optional) [Juggernaut_RunDiffusionPhoto2_Lightning_4Steps](https://huggingface.co/RunDiffusion/Juggernaut-XL-Lightning/blob/main/Juggernaut_RunDiffusionPhoto2_Lightning_4Steps.safetensors)
+  * Distilling model used in `SUPIR_v0_Juggernautv9_lightning.yaml`
 
 
 #### Models we provided:
@@ -108,6 +112,12 @@ CUDA_VISIBLE_DEVICES=0,1 python test.py --img_dir '/opt/data/private/LV_Dataset/
 ### Gradio Demo
 ```Shell
 CUDA_VISIBLE_DEVICES=0,1 python gradio_demo.py --ip 0.0.0.0 --port 6688 --use_image_slider --log_history
+
+# Juggernaut_RunDiffusionPhoto2_Lightning_4Steps and DPM++ M2 SDE Karras for fast sampling
+CUDA_VISIBLE_DEVICES=0,1 python gradio_demo.py --ip 0.0.0.0 --port 6688 --use_image_slider --log_history --opt options/SUPIR_v0_Juggernautv9_lightning.yaml
+
+# less VRAM & slower (12G for Diffusion, 16G for LLaVA)
+CUDA_VISIBLE_DEVICES=0,1 python gradio_demo.py --ip 0.0.0.0 --port 6688 --use_image_slider --log_history --loading_half_params --use_tile_vae --load_8bit_llava
 ```
 <p align="center">
   <img src="assets/DemoGuide.png">
@@ -129,5 +139,19 @@ CUDA_VISIBLE_DEVICES=0,1 python gradio_demo.py --ip 0.0.0.0 --port 6688 --use_im
       primaryClass={cs.CV}
     }
 
+---
+
 ## 📧 Contact
 If you have any question, please email `fanghuayu96@gmail.com`.
+
+---
+## Non-Commercial Use Only Declaration
+The SUPIR ("Software") is made available for use, reproduction, and distribution strictly for non-commercial purposes. For the purposes of this declaration, "non-commercial" is defined as not primarily intended for or directed towards commercial advantage or monetary compensation.
+
+By using, reproducing, or distributing the Software, you agree to abide by this restriction and not to use the Software for any commercial purposes without obtaining prior written permission from Dr. Jinjin Gu.
+
+This declaration does not in any way limit the rights under any open source license that may apply to the Software; it solely adds a condition that the Software shall not be used for commercial purposes.
+
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+For inquiries or to obtain permission for commercial use, please contact Dr. Jinjin Gu (hellojasongt@gmail.com).
