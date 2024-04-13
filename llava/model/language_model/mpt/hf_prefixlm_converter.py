@@ -396,7 +396,7 @@ def convert_hf_causal_lm_to_prefix_lm(model: CAUSAL_LM_TYPES) -> CAUSAL_LM_TYPES
     elif isinstance(model, OPTForCausalLM):
         return _convert_opt_causal_lm_to_prefix_lm(model)
     else:
-        raise TypeError(f'Cannot convert model to Prefix LM. ' + f'Model does not belong to set of supported HF models:' + f'\n{_SUPPORTED_HF_MODELS}')
+        raise TypeError('Cannot convert model to Prefix LM. ' + 'Model does not belong to set of supported HF models:' + f'\n{_SUPPORTED_HF_MODELS}')
 
 def add_bidirectional_mask_if_missing(batch: Dict[str, Any]):
     """Attempts to add bidirectional_mask to batch if missing.

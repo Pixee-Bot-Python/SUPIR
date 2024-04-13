@@ -285,7 +285,7 @@ def make_attn(in_channels, attn_type="vanilla", attn_kwargs=None):
     ):
         assert XFORMERS_IS_AVAILABLE, (
             f"We do not support vanilla attention in {torch.__version__} anymore, "
-            f"as it is too expensive. Please install xformers via e.g. 'pip install xformers==0.0.16'"
+            "as it is too expensive. Please install xformers via e.g. 'pip install xformers==0.0.16'"
         )
         attn_type = "vanilla-xformers"
     print(f"making attention of type '{attn_type}' with {in_channels} in_channels")
