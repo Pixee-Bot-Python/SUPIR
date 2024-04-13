@@ -197,7 +197,7 @@ def safe_save_model_for_hf_trainer(trainer: transformers.Trainer,
                 os.makedirs(mm_projector_folder, exist_ok=True)
                 torch.save(weight_to_save, os.path.join(mm_projector_folder, f'{current_folder}.bin'))
             else:
-                torch.save(weight_to_save, os.path.join(output_dir, f'mm_projector.bin'))
+                torch.save(weight_to_save, os.path.join(output_dir, 'mm_projector.bin'))
         return
 
     if trainer.deepspeed:
@@ -396,7 +396,7 @@ def preprocess_llama_2(
                 target[:] = IGNORE_INDEX
                 print(
                     f"WARNING: tokenization mismatch: {cur_len} vs. {total_len}."
-                    f" (ignored)"
+                    " (ignored)"
                 )
 
     return dict(
@@ -478,7 +478,7 @@ def preprocess_v1(
                 target[:] = IGNORE_INDEX
                 print(
                     f"WARNING: tokenization mismatch: {cur_len} vs. {total_len}."
-                    f" (ignored)"
+                    " (ignored)"
                 )
 
     return dict(
@@ -544,7 +544,7 @@ def preprocess_mpt(
                 target[:] = IGNORE_INDEX
                 print(
                     f"WARNING: tokenization mismatch: {cur_len} vs. {total_len}."
-                    f" (ignored)"
+                    " (ignored)"
                 )
 
     return dict(

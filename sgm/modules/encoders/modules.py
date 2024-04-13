@@ -831,7 +831,7 @@ class FrozenOpenCLIPImageEmbedder(AbstractEmbModel):
                 tokens = rearrange(tokens, "(b n) t d -> b t (n d)", n=self.max_crops)
                 print(
                     f"You are running very experimental token-concat in {self.__class__.__name__}. "
-                    f"Check what you are doing, and then remove this message."
+                    "Check what you are doing, and then remove this message."
                 )
         if self.output_tokens:
             return x, tokens

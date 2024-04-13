@@ -39,7 +39,7 @@ else:
     sdp_kernel = nullcontext
     BACKEND_MAP = {}
     print(
-        f"No SDP backend available, likely because you are running in pytorch versions < 2.0. In fact, "
+        "No SDP backend available, likely because you are running in pytorch versions < 2.0. In fact, "
         f"you are using PyTorch {torch.__version__}. You might want to consider upgrading."
     )
 

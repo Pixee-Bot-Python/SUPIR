@@ -177,7 +177,7 @@ class MPTModel(MPTPreTrainedModel):
             past_position = 0
             if past_key_values is not None:
                 if len(past_key_values) != self.config.n_layers:
-                    raise ValueError(f'past_key_values must provide a past_key_value for each attention ' + f'layer in the network (len(past_key_values)={len(past_key_values)!r}; self.config.n_layers={self.config.n_layers!r}).')
+                    raise ValueError('past_key_values must provide a past_key_value for each attention ' + f'layer in the network (len(past_key_values)={len(past_key_values)!r}; self.config.n_layers={self.config.n_layers!r}).')
                 past_position = past_key_values[0][0].size(1)
                 if self.attn_impl == 'torch':
                     past_position = past_key_values[0][0].size(3)

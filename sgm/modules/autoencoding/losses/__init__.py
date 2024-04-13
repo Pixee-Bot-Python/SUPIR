@@ -106,7 +106,7 @@ class GeneralLPIPSWithDiscriminator(nn.Module):
         if self.dims > 2:
             print(
                 f"running with dims={dims}. This means that for perceptual loss calculation, "
-                f"the LPIPS loss will be applied to each frame independently. "
+                "the LPIPS loss will be applied to each frame independently. "
             )
         self.scale_input_to_tgt_size = scale_input_to_tgt_size
         assert disc_loss in ["hinge", "vanilla"]

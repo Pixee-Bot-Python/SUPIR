@@ -36,7 +36,7 @@ class DispatchMethod(Enum):
         elif name == "shortest_queue":
             return cls.SHORTEST_QUEUE
         else:
-            raise ValueError(f"Invalid dispatch method")
+            raise ValueError("Invalid dispatch method")
 
 
 @dataclasses.dataclass

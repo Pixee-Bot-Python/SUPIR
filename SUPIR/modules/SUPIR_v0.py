@@ -252,8 +252,8 @@ class GLVControl(nn.Module):
             print(
                 f"Constructor of UNetModel received num_attention_blocks={num_attention_blocks}. "
                 f"This option has LESS priority than attention_resolutions {attention_resolutions}, "
-                f"i.e., in cases where num_attention_blocks[i] > 0 but 2**i not in attention_resolutions, "
-                f"attention will still not be set."
+                "i.e., in cases where num_attention_blocks[i] > 0 but 2**i not in attention_resolutions, "
+                "attention will still not be set."
             )  # todo: convert to warning
 
         self.attention_resolutions = attention_resolutions
